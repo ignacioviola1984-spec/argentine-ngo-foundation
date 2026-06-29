@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelo Operativo de Finanzas con IA · Argentine NGO foundation</title>
+<style>
+  :root{
+    --bg:#0a1326; --bg2:#0c1830; --panel:#0f1d35; --panel2:#0d1a30;
+    --border:#1d3a60; --border-soft:#16294a;
+    --ink:#eaf1fb; --muted:#9fb0c9; --muted2:#74879f;
+    --blue:#3b82f6; --blue-soft:#1e3a8a;
+    --orange:#f5841f; --amber:#d4a017; --green:#22c55e; --gray:#64748b; --ai:#f97a3c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% -10%, rgba(34,64,110,.40) 0%, transparent 60%), linear-gradient(180deg,#0a1326 0%, #081020 100%);
+    background-color:#0a1326;
+    color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1320px; margin:0 auto; padding:40px 28px 56px}
+
+  /* Header */
+  .top{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap}
+  .eyebrow{color:var(--orange); font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin:0 0 8px}
+  h1{margin:0; font-size:30px; line-height:1.2; font-weight:800; letter-spacing:-.01em}
+  .sub{margin:10px 0 0; color:var(--muted); font-size:15px; max-width:780px}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; padding-top:4px}
+  .legend span{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted); font-weight:600}
+  .dot{width:10px; height:10px; border-radius:50%}
+  .dot.f0{background:var(--amber)} .dot.pi{background:var(--green)} .dot.es{background:var(--gray)}
+
+  /* Banners */
+  .banner{border-radius:12px; padding:16px 18px; margin-top:22px; display:flex; gap:14px; align-items:flex-start;
+          background:linear-gradient(180deg,#10203a,#0d1a30); border:1px solid var(--border-soft)}
+  .banner .ic{flex:0 0 auto; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px}
+  .banner .k{font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:0}
+  .banner .t{font-size:17px; font-weight:700; margin:3px 0 2px}
+  .banner .d{font-size:13.5px; color:var(--muted); margin:0}
+  .banner.consultor{border-color:#5b3411; box-shadow:inset 3px 0 0 var(--orange)}
+  .banner.consultor .ic{background:rgba(245,132,31,.16); color:var(--orange)}
+  .banner.consultor .k{color:var(--orange)}
+  .banner.fase0{border-color:#5a4710; box-shadow:inset 3px 0 0 var(--amber)}
+  .banner.fase0 .ic{background:rgba(212,160,23,.16); color:var(--amber)}
+  .banner.fase0 .k{color:var(--amber)}
+
+  /* Flow of 6 cards */
+  .flow{display:flex; align-items:stretch; gap:0; margin-top:22px}
+  .card{flex:1 1 0; background:linear-gradient(180deg,var(--panel),var(--panel2)); border:1px solid var(--border);
+        border-radius:12px; padding:16px 15px 14px; display:flex; flex-direction:column; min-width:0}
+  .chev{flex:0 0 auto; display:flex; align-items:center; padding:0 6px; color:#3c5680; font-size:22px; font-weight:700}
+  .num{width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-size:13px; font-weight:700;
+       display:flex; align-items:center; justify-content:center; margin-bottom:12px; box-shadow:0 0 0 4px rgba(59,130,246,.12)}
+  .cat{font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted2); margin:0 0 4px}
+  .card h3{margin:0 0 8px; font-size:15.5px; font-weight:700; line-height:1.25}
+  .card p{margin:0 0 9px; font-size:12.5px; color:var(--muted); line-height:1.4}
+  .note{font-size:11.5px; color:var(--muted2); margin:0 0 4px}
+  .note b{color:#bcccE0; font-weight:600}
+  .datos{font-size:11.5px; margin:0}
+  .datos b{color:var(--blue); font-weight:700}
+  .spacer{flex:1 1 auto}
+  .foot{margin-top:12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .pill{display:inline-block; font-size:10.5px; font-weight:600; color:var(--muted); border:1px solid var(--border);
+        border-radius:6px; padding:5px 9px; background:rgba(255,255,255,.02)}
+  .ai{font-size:11px; font-weight:700; color:var(--ai); letter-spacing:.02em}
+  .badge{font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:5px; padding:4px 8px}
+  .badge.pi{color:#d7ffe6; background:rgba(34,197,94,.16); border:1px solid rgba(34,197,94,.5)}
+  .badge.es{color:#cdd7e5; background:rgba(100,116,139,.14); border:1px solid rgba(100,116,139,.5)}
+
+  /* Orchestration band */
+  .band{border-radius:12px; padding:15px 18px; margin-top:22px; font-size:13.5px; color:var(--muted);
+        background:linear-gradient(180deg,#13243f,#0e1c33); border:1px solid var(--border-soft)}
+  .band.orq{box-shadow:inset 3px 0 0 var(--orange); border-color:#3a2a14}
+  .band .bt{display:block; color:var(--ink); font-weight:700; font-size:15px; margin-bottom:3px}
+  .band.escala{box-shadow:inset 3px 0 0 var(--green); border-color:#15402a; margin-top:14px}
+
+  /* Governance */
+  .gov-label{color:var(--blue); font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:24px 0 10px}
+  .gov{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  .gcard{background:linear-gradient(180deg,var(--panel),var(--panel2)); border:1px solid var(--border); border-radius:11px; padding:14px 15px}
+  .gcard h4{margin:0 0 6px; font-size:13.5px; font-weight:700}
+  .gcard p{margin:0; font-size:12px; color:var(--muted); line-height:1.4}
+
+  /* Footnotes */
+  .notes{margin-top:24px; display:flex; flex-direction:column; gap:7px}
+  .notes p{margin:0; font-size:12.5px; color:var(--muted)}
+  .notes b{color:#c6d3e6; font-weight:700}
+  .credit{margin-top:22px; padding-top:16px; border-top:1px solid var(--border-soft); font-size:12px; color:var(--muted2)}
+
+  @media (max-width:1024px){
+    .flow{flex-wrap:wrap; gap:12px}
+    .card{flex:1 1 30%}
+    .chev{display:none}
+    .gov{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:25px}
+  }
+  @media (max-width:620px){
+    .wrap{padding:26px 16px 40px}
+    .card{flex:1 1 100%}
+    .gov{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <p class="eyebrow">Propuesta de piloto · Pro-bono</p>
+      <h1>Modelo Operativo de Finanzas con IA · Argentine NGO foundation</h1>
+      <p class="sub">De los sistemas de registro de la ONG a reportes listos para Comisión Directiva y donantes. La IA asiste al equipo, no lo reemplaza.</p>
+    </div>
+    <div class="legend">
+      <span><i class="dot f0"></i>Fase 0</span>
+      <span><i class="dot pi"></i>Piloto</span>
+      <span><i class="dot es"></i>Escala</span>
+    </div>
+  </header>
+
+  <section class="banner consultor">
+    <div class="ic">★</div>
+    <div>
+      <p class="k">Consultor Finance-AI · Operador del modelo · Human in the loop</p>
+      <p class="t">Propone, diseña, entrega, entrena y opera</p>
+      <p class="d">Dueño de todo el proceso. Revisa cada salida y valida los números antes de pasar a la siguiente etapa. La IA asiste, no decide.</p>
+    </div>
+  </section>
+
+  <section class="banner fase0">
+    <div class="ic">☰</div>
+    <div>
+      <p class="k">Fase 0 · Prerrequisito, antes de prometer cualquier entregable</p>
+      <p class="t">Diagnóstico de datos</p>
+      <p class="d">Revisar calidad y estructura del dato en Salesforce y NetSuite: etiquetado por proyecto y fondo, timing de donaciones, plan de cuentas.</p>
+    </div>
+  </section>
+
+  <section class="flow">
+    <div class="card">
+      <div class="num">1</div>
+      <p class="cat">Fuente · Fondeo</p>
+      <h3>Salesforce (Nonprofit)</h3>
+      <p>Registro del fondeo: donantes, donaciones, campañas, voluntarios.</p>
+      <p class="note"><b>PII</b> no sale de Salesforce.</p>
+      <p class="datos"><b>DATOS</b> conector solo lectura.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="pill">Sistema de registro</span></div>
+    </div>
+    <div class="chev">›</div>
+
+    <div class="card">
+      <div class="num">2</div>
+      <p class="cat">Fuente · Contable</p>
+      <h3>Oracle NetSuite</h3>
+      <p>Registro contable: plan de cuentas, gastos, proveedores, AP/AR.</p>
+      <p class="note"><b>AP/AR</b> se opera en NetSuite.</p>
+      <p class="datos"><b>DATOS</b> lectura · API a verificar.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="pill">Sistema de registro</span></div>
+    </div>
+    <div class="chev">›</div>
+
+    <div class="card">
+      <div class="num">3</div>
+      <p class="cat">Liquidez</p>
+      <h3>Forecast de Caja · Runway</h3>
+      <p>Proyección semanal. Cruza timing de donaciones vs pagos. Runway a la vista.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="ai">Asistido por IA</span><span class="badge pi">Piloto</span></div>
+    </div>
+    <div class="chev">›</div>
+
+    <div class="card">
+      <div class="num">4</div>
+      <p class="cat">Rendición de cuentas</p>
+      <h3>Reporte a Comisión Directiva y Donantes</h3>
+      <p>Ejecución por proyecto y fondo, uso de donaciones, estado financiero.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="ai">Asistido por IA</span><span class="badge pi">Piloto</span></div>
+    </div>
+    <div class="chev">›</div>
+
+    <div class="card">
+      <div class="num">5</div>
+      <p class="cat">Cierre</p>
+      <h3>Cierre Mensual</h3>
+      <p>Conciliaciones, devengados, gasto por fondo, plan vs real.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="ai">Asistido por IA</span><span class="badge es">Escala</span></div>
+    </div>
+    <div class="chev">›</div>
+
+    <div class="card">
+      <div class="num">6</div>
+      <p class="cat">Visualización</p>
+      <h3>Dashboards por Audiencia</h3>
+      <p>Tableros en vivo: Comisión Directiva, donantes, dirección.</p>
+      <div class="spacer"></div>
+      <div class="foot"><span class="ai">Asistido por IA</span><span class="badge es">Escala</span></div>
+    </div>
+  </section>
+
+  <section class="band orq">
+    <span class="bt">Capa de Orquestación (Cowork)</span>
+    Conecta las dos fuentes, cruza los datos, corre los controles y genera las salidas y el rastro de auditoría. Salesforce y NetSuite, que hoy no se hablan, se unen aquí. Licencia: costo del programa, no de la ONG.
+  </section>
+
+  <p class="gov-label">Capa de gobierno y trazabilidad</p>
+  <section class="gov">
+    <div class="gcard">
+      <h4>Solo lectura</h4>
+      <p>NetSuite y Salesforce en solo lectura, scope mínimo. La IA no escribe en los sistemas.</p>
+    </div>
+    <div class="gcard">
+      <h4>Datos de donantes</h4>
+      <p>La PII nunca sale de Salesforce. Segregación por ONG en cada conexión.</p>
+    </div>
+    <div class="gcard">
+      <h4>Registro de activos IA</h4>
+      <p>Prompts versionados, golden outputs y rúbricas. Es lo que se reutiliza en otras ONG.</p>
+    </div>
+    <div class="gcard">
+      <h4>Log de sesión</h4>
+      <p>Traza append-only: fecha, inputs, salida y revisor. Auditable y lista para handover.</p>
+    </div>
+  </section>
+
+  <section class="band escala">
+    <span class="bt">Camino de escala</span>
+    Patrón reutilizable más mapeo por ONG, no copiar y pegar. Cada organización adapta su plan de cuentas y estructura de fondos. Una ONG a la vez: diagnosticar, conectar, testear, entregar.
+  </section>
+
+  <div class="notes">
+    <p><b>Alcance del piloto:</b> una ONG, solo lectura, dos entregables (forecast de caja y reporte a CD / donantes). Cierre, planning y dashboards en fase de escala.</p>
+    <p><b>A verificar:</b> acceso API de NetSuite (edición donada), edición y permisos de Salesforce, calidad del dato (Fase 0).</p>
+    <p><b>Riesgo declarado:</b> Cowork y los conectores custom están en beta. Se valida con datos reales en el piloto antes de comprometer al programa.</p>
+  </div>
+
+  <p class="credit">Preparado por Ignacio Viola · Finance-AI · ex-J.P. Morgan &amp; American Express · Documento de discusión · Junio 2026</p>
+
+</div>
+</body>
+</html>

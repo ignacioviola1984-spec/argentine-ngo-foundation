@@ -1,0 +1,17 @@
+# Operating Model - dependencias.
+#
+#   pip install -r requirements.txt
+#   streamlit run app.py
+#
+# Corre offline (sin API key): el motor deterministico, los agentes con plantillas,
+# el orquestador, los tests y los guardas no necesitan red. anthropic + dotenv son
+# solo para la capa de prosa (redaccion con el modelo).
+
+# --- app + graficos + motor deterministico ---
+streamlit>=1.33
+pandas>=2.0
+plotly>=5.18
+
+# --- capa de prosa (opcional en runtime; fallback a plantillas si no esta) ---
+anthropic>=0.40       # cliente Claude; el guarda rechaza cifras inventadas y PII
+python-dotenv>=1.0    # carga ANTHROPIC_API_KEY desde <repo>/.env

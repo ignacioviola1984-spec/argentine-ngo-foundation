@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+.venv/
+venv/
+.DS_Store
+
+# Secreto: ANTHROPIC_API_KEY vive en <repo>/.env y NUNCA se commitea.
+.env
+
+# Artefactos de runtime (generados; no se commitean).
+potenciar_state.json
+audit_log.jsonl
+
+# Salidas generadas (historico de metricas anonimas). ai_assets/ SI se versiona.
+outputs/*
+!outputs/.gitkeep

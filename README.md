@@ -1,5 +1,9 @@
 # Finance-AI Operating Model · Argentine NGO foundation
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://argentine-ngo-finance-model.streamlit.app)
+
+**Demo en vivo / Live demo:** https://argentine-ngo-finance-model.streamlit.app
+
 > Finance-AI operating model for an Argentine NGO foundation, pro-bono. Public repo uses synthetic data and anonymized institutional references. Real implementation remains private and read-only.
 
 **Operating model** de finanzas **en implementación para una ONG** (pro-bono).

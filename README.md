@@ -4,9 +4,12 @@
 
 **Demo en vivo / Live demo:** https://argentine-ngo-finance-model.streamlit.app
 
-> Finance-AI operating model for an Argentine NGO foundation, pro-bono. Public repo uses synthetic data and anonymized institutional references. Real implementation remains private and read-only.
+> Finance-AI operating model for an Argentine NGO foundation. Public repo uses synthetic data and anonymized institutional references. Real implementation remains private and read-only.
 
-**Operating model** de finanzas **en implementación para una ONG** (pro-bono).
+# Status: 
+Model built end-to-end, in the Implementation Readiness Phase.
+
+**Operating model** de finanzas **en implementación para una ONG**
 Organización y sponsor confirmados, scope acordado, workflow ajustado y código
 completo; en curso el mapeo de datos, la validación de fuentes, los permisos de
 solo lectura y la definición de controles. Baja el operating model del PDF de
@@ -121,9 +124,8 @@ implementación de referencia, no expone datos de ninguna ONG. En la instalació
 los conectores leen los sistemas reales de la ONG en solo lectura. Las donaciones en
 USD se consolidan a tipo de cambio de cierre de período (congelado), no a tipo de
 cambio vivo. **Solo lectura:** nada escribe en los sistemas de registro. El operating
-model está en implementación para una primera ONG; el camino de escala (resto de las
-ONG sobre el stack integrado Salesforce + NetSuite) viene después de la primera salida
-en vivo.
+model está diseñado para una primera ONG; con el cliente, el modelo está en fase
+de preparación para su implementación.
 
 ---
 

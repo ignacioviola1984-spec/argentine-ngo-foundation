@@ -4,12 +4,12 @@
 
 **Demo en vivo / Live demo:** https://argentine-ngo-finance-model.streamlit.app
 
-> Finance-AI operating model for an Argentine NGO foundation. Public repo uses synthetic data and anonymized institutional references. Real implementation remains private and read-only.
+> Finance-AI operating model for an Argentine NGO foundation. Public repo uses synthetic data and anonymized institutional references. Real operating model remains private and read-only.
 
 # Status: 
-Model built end-to-end, in the Implementation Readiness Phase.
+Model built end-to-end, client pre-pilot evaluation phase.
 
-**Operating model** de finanzas **en implementación para una ONG**
+**Operating model** 
 Organización y sponsor confirmados, scope acordado, workflow ajustado y código
 completo; en curso el mapeo de datos, la validación de fuentes, los permisos de
 solo lectura y la definición de controles. Baja el operating model del PDF de
